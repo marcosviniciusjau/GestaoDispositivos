@@ -123,9 +123,6 @@
   <data name="Type_Invalid" xml:space="preserve">
     <value>Tipo inválido</value>
   </data>
-  <data name="Title_Required" xml:space="preserve">
-    <value>O título é obrigatório</value>
-  </data>
   <data name="Unknow_Error" xml:space="preserve">
     <value>Erro desconhecido</value>
   </data>
@@ -133,7 +130,7 @@
     <value>O email é obrigatório</value>
   </data>
   <data name="Password_Invalid" xml:space="preserve">
-    <value>Senha invalida</value>
+    <value>A senha tem que conter 8 caracteres, que contenham letras maiúsculas, minísculas, número e caracteres especiais  </value>
   </data>
   <data name="Email_Exists" xml:space="preserve">
     <value>Email já existente</value>
@@ -145,12 +142,24 @@
     <value>Email ou senha inválidos</value>
   </data>
   <data name="Email_Invalid" xml:space="preserve">
-    <value>Esse email é inválido</value>
+    <value>Esse tipo de email é inválido, lembre-se de incluir esse modelo email@email.com</value>
   </data>
   <data name="Different_Password" xml:space="preserve">
     <value>A senha tem que ser igual a senha atual</value>
   </data>
   <data name="Status_Invalid" xml:space="preserve">
     <value>O Status precisa ser true ou false</value>
+  </data>
+  <data name="Serial_Not_Empty" xml:space="preserve">
+    <value>O Serial tem que conter no mínimo 50 caracteres</value>
+  </data>
+  <data name="IMEI_Not_Empty" xml:space="preserve">
+    <value>O IMEI tem que conter 15 caracteres</value>
+  </data>
+  <data name="Date_Not_Empty" xml:space="preserve">
+    <value>A Data é obrigatória</value>
+  </data>
+  <data name="Dispositivo_Id_Not_Empty" xml:space="preserve">
+    <value>O ID do dispositivo é obrigatório</value>
   </data>
 </root>

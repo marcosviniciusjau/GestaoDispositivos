@@ -17,7 +17,7 @@ public class AutoMapping: Profile
     private void RequestToEntity()
     {
         CreateMap<RequestEvento, Evento>();
-        CreateMap<RequestCliente, Dispositivo>();
+        CreateMap<RequestDispositivo, Dispositivo>();
         CreateMap<RequestCliente, Cliente>()
             .ForMember(dest => dest.Senha, opt => opt.Ignore());
         }

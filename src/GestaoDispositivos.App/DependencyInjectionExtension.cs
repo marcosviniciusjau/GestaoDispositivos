@@ -1,4 +1,7 @@
 ﻿using GestaoDispositivos.App.AutoMapper;
+using GestaoDispositivos.App.Validations.Dispositivo.Register;
+using GestaoDispositivos.App.Validations.Dispositivos.Register;
+using GestaoDispositivos.App.Validations.Eventos.Register;
 using GestaoDispositivos.App.Validations.Login;
 using GestaoDispositivos.App.Validations.Users.ChangePassword;
 using GestaoDispositivos.App.Validations.Users.Delete;
@@ -28,7 +31,9 @@ public static class DependencyInjectionExtension
          services.AddScoped<IRegistrarClienteValidation, RegistrarClienteValidation>();
       
 
-        services.AddScoped<IRegistrarClienteValidation, RegistrarClienteValidation>();
+        services.AddScoped<IRegisterDispositivoValidation, RegisterDispositivoValidation>();
+        services.AddScoped<IRegisterEventoValidation, RegisterEventoValidation>();
+
         services.AddScoped<ILoginValidation, LoginValidation>();
 
         services.AddScoped<IGetProfileValidation, GetProfileValidation>();

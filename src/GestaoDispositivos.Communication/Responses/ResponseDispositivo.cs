@@ -10,6 +10,4 @@ public class ResponseDispositivo
     public required string IMEI { get; set; } = string.Empty;
     public DateTime DataAtivacao { get; set; }
 
-    public required Guid ClienteId { get; set; }
-    public required Cliente Cliente { get; set; }
 }

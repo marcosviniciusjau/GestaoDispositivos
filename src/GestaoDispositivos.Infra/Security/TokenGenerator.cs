@@ -1,6 +1,7 @@
 ﻿using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Security;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.SqlServer.Management.Smo;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,6 +22,7 @@ namespace GestaoDispositivos.Infra.Security
         {
             var claims = new List<Claim>()
             {
+                new(ClaimTypes.Sid, cliente.Id.ToString()),
                 new(ClaimTypes.Name, cliente.Nome),
                 new(ClaimTypes.Email, cliente.Email),
             };

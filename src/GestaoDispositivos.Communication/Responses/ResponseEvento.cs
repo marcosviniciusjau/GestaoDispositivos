@@ -11,5 +11,4 @@ public class ResponseEvento
     public required DateTime DataHora { get; set; }
 
     public required Guid DispositivoId { get; set; }
-    public required Dispositivo Dispositivo { get; set; }
 }

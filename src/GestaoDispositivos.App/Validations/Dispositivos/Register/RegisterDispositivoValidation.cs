@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using GestaoDispositivos.App.Validations.Dispositivo;
 using GestaoDispositivos.App.Validations.Dispositivo.Register;
 using GestaoDispositivos.App.Validations.Eventos;
@@ -31,10 +32,10 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
 
     public async Task<ResponseDispositivo> Execute(RequestDispositivo request)
     {
-        Validate(request);
+        await Validate(request);
         var loggedUser = await _loggedUser.Get();
 
-       var dispositivo = _mapper.Map<Domain.Entities.Dispositivo>(request);
+        var dispositivo = _mapper.Map<Domain.Entities.Dispositivo>(request);
         dispositivo.ClienteId = loggedUser.Id;
 
         await _repo.Add(dispositivo);
@@ -43,17 +44,17 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
         return _mapper.Map<ResponseDispositivo>(dispositivo);
     }
 
-    private static void Validate(RequestDispositivo request)
+    private async Task Validate(RequestDispositivo request)
     {
-      //  var validator = new DispositivoValidator();
+        var validator = new DispositivoValidator();
 
-     //   var result = validator.Validate(request);
+        var result = validator.Validate(request);
 
-      //  if (result.IsValid == false)
-    //    {
-      //      var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
+        if (result.IsValid == false)
+        {
+            var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
 
-       //     throw new ErrorOnValidation(errorMessages);
-       // }
+            throw new ErrorOnValidation(errorMessages);
+        }
     }
 }

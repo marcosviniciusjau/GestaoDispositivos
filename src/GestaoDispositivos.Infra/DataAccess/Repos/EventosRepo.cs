@@ -23,7 +23,11 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
     {
         return await _dbContext.Eventos.AsNoTracking().ToListAsync();
     }
-
+    public async Task Delete(Guid id)
+    {
+        var result = await _dbContext.Eventos.FindAsync(id);
+        _dbContext.Eventos.Remove(result!);
+    }
 
     public async Task<List<Evento>> GetEventsByWeek(DateOnly date)
     {
@@ -62,9 +66,4 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
             .ToListAsync();
     }
 
-  //  private static IIncludableQueryable<Evento, ICollection<Tipos>> GetFullEvento()
-  //  {
-      // return _dbContext.Eventos
-         //   .Include(eventos => eventos.Tipo);
-  //  }
 }

@@ -61,11 +61,29 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A Data é obrigatória.
+        /// </summary>
+        public static string Date_Not_Empty {
+            get {
+                return ResourceManager.GetString("Date_Not_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A senha tem que ser igual a senha atual.
         /// </summary>
         public static string Different_Password {
             get {
                 return ResourceManager.GetString("Different_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O ID do dispositivo é obrigatório.
+        /// </summary>
+        public static string Dispositivo_Id_Not_Empty {
+            get {
+                return ResourceManager.GetString("Dispositivo_Id_Not_Empty", resourceCulture);
             }
         }
         
@@ -88,7 +106,7 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Esse email é inválido.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Esse tipo de email é inválido, lembre-se de incluir esse modelo email@email.com.
         /// </summary>
         public static string Email_Invalid {
             get {
@@ -102,6 +120,15 @@ namespace GestaoDispositivos.Exception {
         public static string Email_Not_Empty {
             get {
                 return ResourceManager.GetString("Email_Not_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O IMEI tem que conter 15 caracteres.
+        /// </summary>
+        public static string IMEI_Not_Empty {
+            get {
+                return ResourceManager.GetString("IMEI_Not_Empty", resourceCulture);
             }
         }
         
@@ -124,11 +151,20 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha invalida.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A senha tem que conter 8 caracteres, que contenham letras maiúsculas, minísculas, número e caracteres especiais  .
         /// </summary>
         public static string Password_Invalid {
             get {
                 return ResourceManager.GetString("Password_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O Serial tem que conter no mínimo 50 caracteres.
+        /// </summary>
+        public static string Serial_Not_Empty {
+            get {
+                return ResourceManager.GetString("Serial_Not_Empty", resourceCulture);
             }
         }
         
@@ -138,15 +174,6 @@ namespace GestaoDispositivos.Exception {
         public static string Status_Invalid {
             get {
                 return ResourceManager.GetString("Status_Invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O título é obrigatório.
-        /// </summary>
-        public static string Title_Required {
-            get {
-                return ResourceManager.GetString("Title_Required", resourceCulture);
             }
         }
         

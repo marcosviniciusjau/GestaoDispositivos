@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GestaoDispositivos.App.Validations.Dispositivo.Register;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Entities;
@@ -7,22 +6,27 @@ using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using GestaoDispositivos.Domain.Services;
 using GestaoDispositivos.Exception.ExceptionBase;
+using GestaoEventos.App.Validations.Eventos;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace GestaoDispositivos.App.Validations.Eventos.Register;
 public class RegisterEventoValidation : IRegisterEventoValidation
 {
     private readonly IEventoCreate _repo;
+    private readonly IEventoRead _repoRead;
     private readonly IUnitOfWork _unityOfWork;
     private readonly IMapper _mapper;
     private readonly IClienteLogado _loggedUser;
     public RegisterEventoValidation(
         IEventoCreate repo,
+        IEventoRead repoRead,
         IUnitOfWork unityOfWork,
         IMapper mapper,
         IClienteLogado loggedUser
         )
     {
-        _repo = repo;
+        _repo = repo; 
+        _repoRead = repoRead;
         _unityOfWork = unityOfWork;
         _mapper = mapper;
         _loggedUser = loggedUser;
@@ -32,12 +36,15 @@ public class RegisterEventoValidation : IRegisterEventoValidation
     {
         Validate(request);
         var loggedUser = await _loggedUser.Get();
+        
+        var evento = _mapper.Map<Evento>(request);
+        var dispositivoId = await _repoRead.FilterByMonth(loggedUser, month);
+        evento.DispositivoId = loggedUser.Id;
 
-        var expense = _mapper.Map<Evento>(request);
-        await _repo.Add(expense);
+        await _repo.Add(evento);
 
         await _unityOfWork.Commit();
-        return _mapper.Map<ResponseEvento>(expense);
+        return _mapper.Map<ResponseEvento>(evento);
     }
 
     private static void Validate(RequestEvento request)
@@ -45,7 +52,13 @@ public class RegisterEventoValidation : IRegisterEventoValidation
         var validator = new EventoValidator();
 
         var result = validator.Validate(request);
+        if (result.IsValid == false)
+        {
+            var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
 
-       
-    }
+            throw new ErrorOnValidation(errorMessages);
+        }
+    
+
+}
 }

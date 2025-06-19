@@ -21,10 +21,8 @@ namespace GestaoDispositivos.API.Controllers
             [FromServices] IRegistrarClienteValidation validation,
             [FromBody] RequestCliente request)
         {
-            Console.WriteLine("A REQUISICAO", request);
             var response = await validation.Execute(request);
 
-            Console.WriteLine("A response", response);
             return Created(string.Empty, response);
         }
 

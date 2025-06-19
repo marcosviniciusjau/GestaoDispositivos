@@ -46,8 +46,8 @@ public class RegistrarClienteValidation(
     private async Task Validate(RequestCliente request)
     {
         var validator = new ClienteValidator();
+         var result = validator.Validate(request);
 
-        var result = validator.Validate(request);
         var exists = await _clienteReadOnly.Exists(request.Email);
         if (exists) {
             result.Errors.Add(new ValidationFailure(string.Empty,ResourceErrorMessages.Email_Exists));

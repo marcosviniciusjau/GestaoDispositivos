@@ -4,6 +4,7 @@ using GestaoDispositivos.Infra.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoDispositivos.Infra.Migrations
 {
     [DbContext(typeof(GestaoDispositivosDbContext))]
-    partial class GestaoDispositivosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250619143156_RemovingClientField")]
+    partial class RemovingClientField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
