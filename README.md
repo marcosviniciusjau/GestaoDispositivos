@@ -11,6 +11,9 @@ Features
 Domain-Driven Design (DDD): Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
 RESTful API com Documentação Swagger: Interface documentada que facilita a integração e o teste por parte dos desenvolvedores.
 Construído com
+.NET 8
+EntityFramework
+Sql Server
 
 Getting Started
 Para obter uma cópia local funcionando, siga estes passos simples.
@@ -24,6 +27,7 @@ Instalação
 Clone o repositório:
 
 git clone https://github.com/marcosviniciusjau/GestaoDispositivos.git
+
 Preencha as informações no arquivo appsettings.Development.json: {
   "ConnectionStrings": {
     "Connection": "Server=Seu servidor;Database=gestao_dispositivos;User Id=sa;Password=Sua Senha&;TrustServerCertificate=True;"
@@ -37,10 +41,12 @@ Preencha as informações no arquivo appsettings.Development.json: {
 }
 
 Migrações
-Antes de começar a rodar a aplicação rode o comando na pasta src: dotnet ef migrations add nome_migracao --project src/GestaoDispositivos.Infra --startup-project src/GestaoDispositivos.API
-Execute a API
+Para novas migrations rode o comando na raiz do projeto onde está o projeto sln: dotnet ef migrations add nome_migracao --project src/GestaoDispositivos.Infra --startup-project src/GestaoDispositivos.API
+
+Ao Executar a API, as migrations serão executados no banco de dados e as tabelas serão criadas.
+
 Rotas:
 CRUD de Cliente
 CRUD de Dispositivos
 CRUD de Eventos por semana
-Rota autenticação com JWT
+As rotas são ferenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos
