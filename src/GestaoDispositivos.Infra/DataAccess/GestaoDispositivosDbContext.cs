@@ -9,6 +9,8 @@ internal class GestaoDispositivosDbContext(DbContextOptions options) : DbContext
     public DbSet<Dispositivo> Dispositivos { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
 
+    public DbSet<Admin> Admin { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

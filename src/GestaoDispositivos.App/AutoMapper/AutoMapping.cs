@@ -18,7 +18,10 @@ public class AutoMapping: Profile
     {
         CreateMap<RequestEvento, Evento>();
         CreateMap<RequestDispositivo, Dispositivo>();
-        CreateMap<RequestCliente, Cliente>()
+        CreateMap<RequestAdmin, Admin>()
+            .ForMember(dest => dest.Senha, opt => opt.Ignore());
+    
+    CreateMap<RequestCliente, Cliente>()
             .ForMember(dest => dest.Senha, opt => opt.Ignore());
         }
 
@@ -28,7 +31,9 @@ public class AutoMapping: Profile
 
         CreateMap<Dispositivo, ResponseDispositivo>();
 
-        CreateMap<Cliente, ResponseCliente>();
+        CreateMap<Cliente, ResponseUser>();
+        CreateMap<Admin, ResponseUser>();
+        CreateMap<Admin, ResponseClientes>();
         CreateMap<Cliente, ResponseClienteProfile>();
     }
 }

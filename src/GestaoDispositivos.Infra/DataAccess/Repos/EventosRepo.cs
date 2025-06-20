@@ -1,9 +1,7 @@
 ﻿using GestaoDispositivos.Domain.Entities;
-using GestaoDispositivos.Domain.Entities.Enums;
+using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.SqlServer.Management.Smo;
 namespace GestaoDispositivos.Infra.DataAccess.Repos;
 
 internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoDelete
@@ -28,23 +26,24 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
         var result = await _dbContext.Eventos.FindAsync(id);
         _dbContext.Eventos.Remove(result!);
     }
+    public async Task<Evento?> GetByDispositivoId(Guid dispositivoId)
+    {
+        return await _dbContext.Eventos
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.DispositivoId == dispositivoId);
+    }
 
-    public async Task<List<Evento>> GetEventsByWeek(DateOnly date)
+    public async Task<List<Evento>> GetEventsByWeek()
     {
         var startDate = 11/06/2025;
         var endDate =18/06/2025;
 
         return await _dbContext.Eventos.AsNoTracking()
             .OrderByDescending(evento => evento.DataHora)
+            .OrderByDescending(evento => evento.Tipo)
             .ToListAsync();
     }
 
-
-    public async Task Delete(Guid id)
-    {
-        var result = await _dbContext.Eventos.FindAsync(id);
-        _dbContext.Eventos.Remove(result!);
-    }
 
     public void Update(Evento expense)
     {
@@ -65,5 +64,10 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
             .OrderBy(evento => evento.DataHora)
             .ToListAsync();
     }
-
+    async Task<Evento?> IEventoRead.GetById(Guid id)
+    {
+        return await _dbContext.Eventos
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Id == id);
+    }
 }

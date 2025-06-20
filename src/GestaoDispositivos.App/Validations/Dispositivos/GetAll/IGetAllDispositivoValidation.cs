@@ -1,7 +1,7 @@
 ﻿using GestaoDispositivos.Communication.Responses;
 
 namespace GestaoDispositivos.App.Validations.Dispositivos.GetAll;
-public interface IGetAllDispositivoValidation
+public interface IGetAllDispositivosValidation
 {
-    Task<ResponseDispositivo> Execute();
+    Task<ResponseDispositivos> Execute();
 }

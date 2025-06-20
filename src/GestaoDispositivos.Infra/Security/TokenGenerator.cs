@@ -38,6 +38,26 @@ namespace GestaoDispositivos.Infra.Security
             return tokenHandler.WriteToken(token);
         }
 
+        public string GenerateAdmin(Admin admin)
+        {
+            var claims = new List<Claim>()
+            {
+                new(ClaimTypes.Sid, admin.Id.ToString()),
+                new(ClaimTypes.Name, admin.Nome),
+                new(ClaimTypes.Email, admin.Email),
+            };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Expires = DateTime.UtcNow.AddMinutes(_expirationMinutes),
+                SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.HmacSha256Signature),
+                Subject = new ClaimsIdentity(claims)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
         private SymmetricSecurityKey SecurityKey()
         {
             var key = Encoding.UTF8.GetBytes(_signingKey);

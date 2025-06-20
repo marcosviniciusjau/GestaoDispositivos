@@ -9,7 +9,7 @@ namespace GestaoDispositivos.API.Controllers;
 public class LoginController : ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseCliente), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseUser), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseError), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Register(
             [FromServices] ILoginValidation validation,

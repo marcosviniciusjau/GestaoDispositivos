@@ -1,6 +1,6 @@
 ﻿namespace GestaoDispositivos.Communication.Responses
 {
-    public class ResponseCliente
+    public class ResponseUser
     {
         public required string Token { get; set; }
     }

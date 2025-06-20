@@ -1,5 +1,5 @@
-﻿namespace GestaoDispositivos.App.Validations.Users.Delete;
-public interface IDeleteProfileValidation
+﻿namespace GestaoDispositivos.App.Validations.Clientes.Delete;
+public interface IDeleteDispositivoValidation
 {
-    Task Execute();
+    Task Execute(Guid id);
 }

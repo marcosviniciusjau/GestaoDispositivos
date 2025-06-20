@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using FluentValidation;
-using GestaoDispositivos.App.Validations.Dispositivo;
 using GestaoDispositivos.App.Validations.Dispositivo.Register;
-using GestaoDispositivos.App.Validations.Eventos;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Repos;

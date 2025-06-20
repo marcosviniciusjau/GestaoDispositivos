@@ -33,7 +33,7 @@ public class ChangePasswordValidation(IClienteLogado loggedUser,
         await _unitOfWork.Commit();
     }
 
-    private void Validate(RequestChangePassword request, Cliente loggedUser)
+    private void Validate(RequestChangePassword request, Domain.Entities.Cliente loggedUser)
     {
         var validator = new ChangePasswordValidator();
 

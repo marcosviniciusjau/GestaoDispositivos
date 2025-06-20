@@ -1,7 +1,9 @@
-﻿using GestaoDispositivos.App.Validations.Users.ChangePassword;
-using GestaoDispositivos.App.Validations.Users.Delete;
+﻿using GestaoDispositivos.App.Validations.Admin.Delete;
+using GestaoDispositivos.App.Validations.Cliente.Register;
+using GestaoDispositivos.App.Validations.Clientes.Delete;
+using GestaoDispositivos.App.Validations.Dispositivos.Update;
+using GestaoDispositivos.App.Validations.Users.ChangePassword;
 using GestaoDispositivos.App.Validations.Users.GetProfile;
-using GestaoDispositivos.App.Validations.Users.Register;
 using GestaoDispositivos.App.Validations.Users.Update;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
@@ -15,10 +17,10 @@ namespace GestaoDispositivos.API.Controllers
     public class ClienteController : ControllerBase
     {
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseCliente), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ResponseUser), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(
-            [FromServices] IRegistrarClienteValidation validation,
+            [FromServices] IRegisterClienteValidation validation,
             [FromBody] RequestCliente request)
         {
             var response = await validation.Execute(request);

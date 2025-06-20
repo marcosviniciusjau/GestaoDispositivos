@@ -4,5 +4,5 @@ using GestaoDispositivos.Communication.Responses;
 namespace GestaoDispositivos.App.Validations.Login;
 public interface ILoginValidation
 {
-    Task<ResponseCliente> Execute(RequestLogin request);
+    Task<ResponseUser> Execute(RequestLogin request);
 }

@@ -7,12 +7,12 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace GestaoDispositivos.App.Validations.Dispositivos.GetAll;
 
-public class GetAllDispositivoValidation : IGetAllDispositivoValidation
+public class GetAllDispositivosValidation : IGetAllDispositivosValidation
 {
     private readonly IDispositivoRead _repo;
     private readonly IMapper _mapper;
     private readonly IClienteLogado _loggedUser;
-    public GetAllDispositivoValidation(
+    public GetAllDispositivosValidation(
         IDispositivoRead repo,
         IMapper mapper,
         IClienteLogado loggedUser
@@ -22,11 +22,14 @@ public class GetAllDispositivoValidation : IGetAllDispositivoValidation
         _mapper = mapper;
         _loggedUser = loggedUser;
     }
-    public async Task<ResponseDispositivo> Execute()
+    public async Task<ResponseDispositivos> Execute()
     {
         var loggedUser = await _loggedUser.Get();
         var result = await _repo.GetAll(loggedUser);
 
-        return _mapper.Map<ResponseDispositivo>(result);
+        return new ResponseDispositivos
+        {
+            Dispositivos = _mapper.Map<List<ResponseDispositivo>>(result)
+        };
     }
 }

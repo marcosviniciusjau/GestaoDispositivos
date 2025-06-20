@@ -39,6 +39,12 @@ internal class DispositivosRepo : IDispositivoRead, IDispositivoCreate, IDisposi
         return await _dbContext.Dispositivos
             .AsNoTracking()
             .FirstOrDefaultAsync(d => d.Id == id && d.ClienteId == cliente.Id);
-    } 
+    }
+    async Task<Dispositivo?> IDispositivoRead.VerifyIfExists(Guid id)
+    {
+        return await _dbContext.Dispositivos
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.Id == id);
+    }
 
 }

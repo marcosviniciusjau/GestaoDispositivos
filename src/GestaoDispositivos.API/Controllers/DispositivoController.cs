@@ -1,5 +1,8 @@
-﻿using GestaoDispositivos.App.Validations.Dispositivo.Register;
+﻿using GestaoDispositivos.App.Validations.Clientes.Delete;
+using GestaoDispositivos.App.Validations.Dispositivo.Register;
 using GestaoDispositivos.App.Validations.Dispositivos.GetAll;
+using GestaoDispositivos.App.Validations.Dispositivos.Update;
+using GestaoDispositivos.App.Validations.Users.Update;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -30,7 +33,7 @@ public class DispositivoController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseDispositivo), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllDispositivos([FromServices] IGetAllDispositivoValidation validation)
+    public async Task<IActionResult> GetAllDispositivos([FromServices] IGetAllDispositivosValidation validation)
     {
         var response = await validation.Execute();
 
@@ -38,5 +41,32 @@ public class DispositivoController : ControllerBase
 
     }
 
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+      [FromServices] IDeleteDispositivoValidation validation,
+      [FromRoute] Guid id)
+    {
+        await validation.Execute(id);
+
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(
+        [FromServices] IUpdateDispositivoValidation validation,
+        [FromRoute] Guid id,
+        [FromBody] RequestDispositivo request)
+    {
+        await validation.Execute(id, request);
+        return NoContent();
+
+    }
 
 }

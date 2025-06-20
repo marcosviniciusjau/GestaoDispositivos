@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using GestaoDispositivos.App.Validations.Admin.Delete;
 using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Clientes;
 using GestaoDispositivos.Domain.Services;
 
-namespace GestaoDispositivos.App.Validations.Users.Delete;
+namespace GestaoDispositivos.App.Validations.Clientes.Delete;
 public class DeleteProfileValidation : IDeleteProfileValidation
 {
 

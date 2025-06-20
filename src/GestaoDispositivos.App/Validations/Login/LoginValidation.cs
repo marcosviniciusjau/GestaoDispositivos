@@ -19,7 +19,7 @@ public class LoginValidation : ILoginValidation
         _tokenGenerator = tokenGenerator;
     }
 
-    public async Task<ResponseCliente> Execute(RequestLogin request)
+    public async Task<ResponseUser> Execute(RequestLogin request)
     {
         var user = await _repos.GetByEmail(request.Email);
         if (user is null)
@@ -32,7 +32,7 @@ public class LoginValidation : ILoginValidation
             throw new InvalidLogin();
         }
 
-        return new ResponseCliente
+        return new ResponseUser
         {
             Token = _tokenGenerator.Generate(user)
         };

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using GestaoDispositivos.Domain.Services;
+using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
 using GestaoEventos.App.Validations.Eventos;
 using Microsoft.SqlServer.Management.Smo;
@@ -35,13 +37,15 @@ public class RegisterEventoValidation : IRegisterEventoValidation
     public async Task<ResponseEvento> Execute(RequestEvento request)
     {
         Validate(request);
-        var loggedUser = await _loggedUser.Get();
         
-        var evento = _mapper.Map<Evento>(request);
-        var dispositivoId = await _repoRead.FilterByMonth(loggedUser, month);
-        evento.DispositivoId = loggedUser.Id;
+        var evento = _mapper.Map<Domain.Entities.Evento>(request);
+        var dispositivoId = await _repoRead.GetByDispositivoId(request.DispositivoId);
+        if (dispositivoId is null)
+        {
+            throw new NotFoundException(ResourceErrorMessages.Dispositivo_Not_Found);
 
-        await _repo.Add(evento);
+        }
+           await _repo.Add(evento);
 
         await _unityOfWork.Commit();
         return _mapper.Map<ResponseEvento>(evento);

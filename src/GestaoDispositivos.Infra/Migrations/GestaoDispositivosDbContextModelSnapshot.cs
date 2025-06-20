@@ -22,6 +22,29 @@ namespace GestaoDispositivos.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Admin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admin");
+                });
+
             modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -76,11 +99,9 @@ namespace GestaoDispositivos.Infra.Migrations
 
             modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Evento", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("datetime2");

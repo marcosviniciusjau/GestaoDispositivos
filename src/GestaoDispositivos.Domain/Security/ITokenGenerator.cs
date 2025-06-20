@@ -5,5 +5,6 @@ namespace GestaoDispositivos.Domain.Security
     public interface ITokenGenerator
     {
         string Generate(Cliente cliente);
+        string GenerateAdmin(Admin admin);
     }
 }
