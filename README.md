@@ -39,3 +39,8 @@ Preencha as informações no arquivo appsettings.Development.json: {
 Migrações
 Antes de começar a rodar a aplicação rode o comando na pasta src: dotnet ef migrations add nome_migracao --project src/GestaoDispositivos.Infra --startup-project src/GestaoDispositivos.API
 Execute a API
+Rotas:
+CRUD de Cliente
+CRUD de Dispositivos
+CRUD de Eventos por semana
+Rota autenticação com JWT
