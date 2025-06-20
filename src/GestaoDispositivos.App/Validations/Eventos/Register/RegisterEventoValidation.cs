@@ -38,13 +38,8 @@ public class RegisterEventoValidation : IRegisterEventoValidation
     {
         Validate(request);
         
-        var evento = _mapper.Map<Domain.Entities.Evento>(request);
-        var dispositivoId = await _repoRead.GetByDispositivoId(request.DispositivoId);
-        if (dispositivoId is null)
-        {
-            throw new NotFoundException(ResourceErrorMessages.Dispositivo_Not_Found);
-
-        }
+        var evento = _mapper.Map<Evento>(request);
+     
            await _repo.Add(evento);
 
         await _unityOfWork.Commit();

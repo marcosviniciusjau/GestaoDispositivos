@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GestaoDispositivos.Communication\GestaoDispositivos.Communication.csproj" />
     <ProjectReference Include="..\GestaoDispositivos.Domain\GestaoDispositivos.Domain.csproj" />
   </ItemGroup>
 

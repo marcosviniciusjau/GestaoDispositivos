@@ -1,4 +1,5 @@
-﻿using GestaoDispositivos.Domain.Entities;
+﻿using GestaoDispositivos.Communication.Responses;
+using GestaoDispositivos.Domain.Entities;
 
 namespace GestaoDispositivos.Domain.Repos.Eventos;
 public interface IEventoRead
@@ -8,5 +9,5 @@ public interface IEventoRead
 
     Task<Evento?> GetById(Guid id);
 
-    Task<List<Evento>> GetEventsByWeek();
+    Task<List<EventosByTipo>> GetEventsByWeek();
 }

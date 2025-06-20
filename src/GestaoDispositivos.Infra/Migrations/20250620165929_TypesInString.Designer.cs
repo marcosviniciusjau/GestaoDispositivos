@@ -4,6 +4,7 @@ using GestaoDispositivos.Infra.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoDispositivos.Infra.Migrations
 {
     [DbContext(typeof(GestaoDispositivosDbContext))]
-    partial class GestaoDispositivosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250620165929_TypesInString")]
+    partial class TypesInString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,8 +97,6 @@ namespace GestaoDispositivos.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
-
                     b.ToTable("Dispositivos");
                 });
 
@@ -120,17 +121,6 @@ namespace GestaoDispositivos.Infra.Migrations
                     b.HasIndex("DispositivoId");
 
                     b.ToTable("Eventos");
-                });
-
-            modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Dispositivo", b =>
-                {
-                    b.HasOne("GestaoDispositivos.Domain.Entities.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Evento", b =>

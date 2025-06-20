@@ -37,7 +37,10 @@ public class DispositivoController : ControllerBase
     {
         var response = await validation.Execute();
 
-           return Ok(response);
+        if (response.Dispositivos.Count != 0)
+            return Ok(response);
+
+        return NoContent();
 
     }
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoDispositivos.Infra.Migrations
 {
     [DbContext(typeof(GestaoDispositivosDbContext))]
-    [Migration("20250618185059_AddingCompanyName")]
-    partial class AddingCompanyName
+    [Migration("20250620171711_FK_Client_Id_In_Dispositivos")]
+    partial class FK_Client_Id_In_Dispositivos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,29 @@ namespace GestaoDispositivos.Infra.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Admin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admin");
+                });
 
             modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Cliente", b =>
                 {
@@ -81,11 +104,9 @@ namespace GestaoDispositivos.Infra.Migrations
 
             modelBuilder.Entity("GestaoDispositivos.Domain.Entities.Evento", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("datetime2");
@@ -93,8 +114,9 @@ namespace GestaoDispositivos.Infra.Migrations
                     b.Property<Guid>("DispositivoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Tipo")
-                        .HasColumnType("int");
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

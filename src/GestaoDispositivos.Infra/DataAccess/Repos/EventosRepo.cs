@@ -1,7 +1,9 @@
-﻿using GestaoDispositivos.Domain.Entities;
+﻿using GestaoDispositivos.Communication.Responses;
+using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace GestaoDispositivos.Infra.DataAccess.Repos;
 
 internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoDelete
@@ -33,15 +35,26 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
             .FirstOrDefaultAsync(d => d.DispositivoId == dispositivoId);
     }
 
-    public async Task<List<Evento>> GetEventsByWeek()
+    public async Task<List<EventosByTipo>> GetEventsByWeek()
     {
-        var startDate = 11/06/2025;
-        var endDate =18/06/2025;
+        //var startDate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
+        ///var daysInMonth = DateTime.DaysInMonth(year: date.Year, month: date.Month);
+        //var endDate = new DateTime(year: date.Year, month: date.Month, day: daysInMonth, hour: 23, minute: 59, second: 59);
 
-        return await _dbContext.Eventos.AsNoTracking()
-            .OrderByDescending(evento => evento.DataHora)
-            .OrderByDescending(evento => evento.Tipo)
+        var eventos = await _dbContext.Eventos
+            .AsNoTracking()
             .ToListAsync();
+
+        var agrupados = eventos
+            .GroupBy(e => e.Tipo)
+            .Select(g => new EventosByTipo
+            {
+                Tipo = g.Key,
+                Eventos = g.ToList()
+            })
+            .ToList();
+
+        return agrupados;
     }
 
 
@@ -70,4 +83,5 @@ internal class EventosRepo : IEventoRead, IEventoCreate, IEventoUpdate, IEventoD
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.Id == id);
     }
+
 }

@@ -1,5 +1,4 @@
-﻿using GestaoDispositivos.Communication.Enums;
-using GestaoDispositivos.Domain.Entities;
+﻿using GestaoDispositivos.Domain.Entities;
 
 namespace GestaoDispositivos.Communication.Responses;
 

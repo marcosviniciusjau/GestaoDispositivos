@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using GestaoDispositivos.App.Validations.Eventos.GetAll;
 using GestaoDispositivos.Communication.Responses;
+using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using GestaoDispositivos.Domain.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestaoDispositivos.App.Validations.Dispositivos.GetAll;
 
@@ -22,13 +24,12 @@ public class GetAllEventosValidation : IGetAllEventosValidation
         _mapper = mapper;
         _loggedUser = loggedUser;
     }
-    public async Task<ResponseEventos> Execute()
+    public async Task<EventosByTipo> Execute()
     {
         var result = await _repo.GetEventsByWeek();
-
-        return new ResponseEventos
+        return new EventosByTipo
         {
-            Eventos = _mapper.Map<List<ResponseEvento>>(result)
+            Eventos = _mapper.Map<List<Evento>>(result)
         };
     }
 }

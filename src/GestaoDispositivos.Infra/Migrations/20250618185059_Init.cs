@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GestaoDispositivos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class AddingCompanyName : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,10 +51,9 @@ namespace GestaoDispositivos.Infra.Migrations
                 name: "Eventos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Tipo = table.Column<int>(type: "int", nullable: false),
-                    DataHora = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                     DataHora = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DispositivoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>

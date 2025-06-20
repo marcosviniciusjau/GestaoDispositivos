@@ -7,5 +7,6 @@ public class Evento
     public Tipos Tipo { get; set; }
     public DateTime DataHora { get; set; }
 
-    public Guid DispositivoId { get; set; } = default!;
+    public Guid DispositivoId { get; set; }
+    public Dispositivo Dispositivo { get; set; } = default!;
 }
