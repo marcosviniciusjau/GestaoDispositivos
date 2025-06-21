@@ -28,6 +28,8 @@ public class UpdateProfileValidation(
         cliente.Telefone = request.Telefone;
         cliente.Email = request.Email;
 
+        cliente.Status = request.Status;
+
         _repos.Update(cliente);
 
         await _unitOfWork.Commit();

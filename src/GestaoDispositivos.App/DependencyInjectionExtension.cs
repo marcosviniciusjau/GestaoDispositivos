@@ -18,6 +18,8 @@ using GestaoDispositivos.App.Validations.Clientes.Update;
 using GestaoDispositivos.App.Validations.Clientes.GetProfile;
 using GestaoDispositivos.App.Validations.Clientes.Register;
 using GestaoDispositivos.App.Validations.LoginAdmin;
+using GestaoDispositivos.App.Validations.Eventos.GetById;
+using GestaoDispositivos.App.Validations.Eventos.GetByDate;
 namespace GestaoDispositivos.App;
 
 public static class DependencyInjectionExtension
@@ -52,6 +54,10 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IRegisterEventoValidation, RegisterEventoValidation>();
         services.AddScoped<IGetAllEventosValidation, GetAllEventosValidation>();
+        services.AddScoped<IGetEventoByIdValidation, GetEventoByIdValidation>();
+
+
+        services.AddScoped<IGetEventosByDateValidation, GetEventosByDateValidation>();
         services.AddScoped<IUpdateEventoValidation, UpdateEventoValidation>();
         services.AddScoped<IDeleteEventoValidation, DeleteEventoValidation>();
 

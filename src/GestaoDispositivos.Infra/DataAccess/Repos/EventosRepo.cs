@@ -1,7 +1,6 @@
 ﻿using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 namespace GestaoDispositivos.Infra.DataAccess.Repos;
 
 internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead, IEventoCreate, IEventoUpdate, IEventoDelete
@@ -59,6 +58,17 @@ internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead,
         _dbContext.Eventos.Update(expense);
     }
 
+    async Task<List<Evento>> IEventoRead.GetByDate(DateTime date)
+    {
+        var startDate = new DateTime(year: date.Year, month: date.Month, day:date.Day).Date;
+       var endDate = new DateTime(year: date.Year, month: date.Month, day: date.Day, hour: 23, minute: 59, second: 59);
+
+        return await _dbContext.Eventos
+             .AsNoTracking()
+              .Where(e => e.DataHora >= startDate &&
+             e.DataHora <= endDate)
+             .ToListAsync();
+    }
 
     public async Task<List<Evento>> FilterByWeek()
     {

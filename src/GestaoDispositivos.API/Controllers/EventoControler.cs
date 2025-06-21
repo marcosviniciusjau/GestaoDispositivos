@@ -1,5 +1,7 @@
 ﻿using GestaoDispositivos.App.Validations.Eventos.Delete;
 using GestaoDispositivos.App.Validations.Eventos.GetAll;
+using GestaoDispositivos.App.Validations.Eventos.GetByDate;
+using GestaoDispositivos.App.Validations.Eventos.GetById;
 using GestaoDispositivos.App.Validations.Eventos.Register;
 using GestaoDispositivos.App.Validations.Eventos.Update;
 using GestaoDispositivos.Communication.Requests;
@@ -40,6 +42,28 @@ public class EventoController : ControllerBase
 
     }
 
+    [HttpGet("eventos_by_date")]
+    [ProducesResponseType(typeof(ResponseEventos), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetEventosByDate([FromServices] IGetEventosByDateValidation validation, [FromHeader] DateTime date)
+    {
+        var response = await validation.Execute(date);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(ResponseEvento), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+   [FromServices] IGetEventoByIdValidation validation,
+   [FromRoute] Guid id)
+    {
+        var response = await validation.Execute(id);
+
+        return Ok(response);
+    }
+ 
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
