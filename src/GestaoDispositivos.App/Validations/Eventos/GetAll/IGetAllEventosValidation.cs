@@ -1,7 +1,6 @@
-﻿using GestaoDispositivos.Communication.Responses;
-
+﻿using GestaoDispositivos.Domain.Entities;
 namespace GestaoDispositivos.App.Validations.Eventos.GetAll;
 public interface IGetAllEventosValidation
 {
-    Task<EventosByTipo> Execute();
+    Task<List<EventosByTipo>> Execute();
 }

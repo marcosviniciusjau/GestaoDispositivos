@@ -1,24 +1,23 @@
 ﻿using GestaoDispositivos.App.AutoMapper;
-using GestaoDispositivos.App.Validations.Admin.GetAll;
 using GestaoDispositivos.App.Validations.Admin.Register;
-using GestaoDispositivos.App.Validations.Cliente.Register;
 using GestaoDispositivos.App.Validations.Clientes.Delete;
-using GestaoDispositivos.App.Validations.Dispositivo.Register;
 using GestaoDispositivos.App.Validations.Dispositivos.Delete;
 using GestaoDispositivos.App.Validations.Dispositivos.GetAll;
 using GestaoDispositivos.App.Validations.Dispositivos.Register;
 using GestaoDispositivos.App.Validations.Dispositivos.Update;
+using GestaoDispositivos.App.Validations.Eventos.Delete;
 using GestaoDispositivos.App.Validations.Eventos.GetAll;
 using GestaoDispositivos.App.Validations.Eventos.Register;
 using GestaoDispositivos.App.Validations.Eventos.Update;
 using GestaoDispositivos.App.Validations.Login;
-using GestaoDispositivos.App.Validations.Users.ChangePassword;
-using GestaoDispositivos.App.Validations.Users.GetProfile;
-using GestaoDispositivos.App.Validations.Users.Update;
-using Microsoft.Extensions.DependencyInjection;
-using IUpdateDispositivoValidation = GestaoDispositivos.App.Validations.Dispositivos.Update.IUpdateDispositivoValidation;
-using UpdateDispositivoValidation = GestaoDispositivos.App.Validations.Dispositivos.Update.UpdateDispositivoValidation;
 
+using Microsoft.Extensions.DependencyInjection;
+using GestaoDispositivos.App.Validations.Admin.GetAllClientes;
+using GestaoDispositivos.App.Validations.Clientes.ChangePassword;
+using GestaoDispositivos.App.Validations.Clientes.Update;
+using GestaoDispositivos.App.Validations.Clientes.GetProfile;
+using GestaoDispositivos.App.Validations.Clientes.Register;
+using GestaoDispositivos.App.Validations.LoginAdmin;
 namespace GestaoDispositivos.App;
 
 public static class DependencyInjectionExtension
@@ -38,17 +37,14 @@ public static class DependencyInjectionExtension
     private static void AddValidations(IServiceCollection services)
     {
          services.AddScoped<IRegisterAdminValidation, RegisterAdminValidation>();
-        services.AddScoped<IGetAllClientesValidation, GetAllClientesValidation>();
+         services.AddScoped<IGetAllClientesValidation, GetAllClientesValidation>();
        
         services.AddScoped<IRegisterClienteValidation, RegisterClienteValidation>();
         services.AddScoped<IGetProfileValidation, GetProfileValidation>();
         services.AddScoped<IUpdateProfileValidation, UpdateProfileValidation>();
 
         services.AddScoped<IChangePasswordValidation, ChangePasswordValidation>();
-        services.AddScoped<IDeleteDispositivoValidation, DeleteDispositivoValidation>();
-
-     
-
+  
         services.AddScoped<IRegisterDispositivoValidation, RegisterDispositivoValidation>();
         services.AddScoped<IGetAllDispositivosValidation, GetAllDispositivosValidation>();
         services.AddScoped<IUpdateDispositivoValidation, UpdateDispositivoValidation>();
@@ -57,10 +53,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<IRegisterEventoValidation, RegisterEventoValidation>();
         services.AddScoped<IGetAllEventosValidation, GetAllEventosValidation>();
         services.AddScoped<IUpdateEventoValidation, UpdateEventoValidation>();
-        services.AddScoped<IDeleteDispositivoValidation, DeleteDispositivoValidation>();
+        services.AddScoped<IDeleteEventoValidation, DeleteEventoValidation>();
 
         services.AddScoped<ILoginValidation, LoginValidation>();
+        services.AddScoped<ILoginValidationAdmin, LoginValidationAdmin>();
 
-          }
-    
+    }
+
 }

@@ -1,8 +1,9 @@
 ﻿using GestaoDispositivos.App.Validations.Clientes.Delete;
-using GestaoDispositivos.App.Validations.Dispositivo.Register;
+using GestaoDispositivos.App.Validations.Dispositivos.Delete;
 using GestaoDispositivos.App.Validations.Dispositivos.GetAll;
+using GestaoDispositivos.App.Validations.Dispositivos.Register;
 using GestaoDispositivos.App.Validations.Dispositivos.Update;
-using GestaoDispositivos.App.Validations.Users.Update;
+
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;

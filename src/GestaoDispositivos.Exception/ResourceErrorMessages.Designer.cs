@@ -124,6 +124,15 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Evento não encontrado.
+        /// </summary>
+        public static string Evento_Not_Found {
+            get {
+                return ResourceManager.GetString("Evento_Not_Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O IMEI tem que conter 15 caracteres.
         /// </summary>
         public static string IMEI_Not_Empty {
@@ -147,6 +156,15 @@ namespace GestaoDispositivos.Exception {
         public static string Name_Not_Empty {
             get {
                 return ResourceManager.GetString("Name_Not_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Você não está autorizado como administrador.
+        /// </summary>
+        public static string Not_Admin {
+            get {
+                return ResourceManager.GetString("Not_Admin", resourceCulture);
             }
         }
         

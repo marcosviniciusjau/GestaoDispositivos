@@ -3,7 +3,7 @@ using FluentValidation.Validators;
 using GestaoDispositivos.Exception;
 using System.Text.RegularExpressions;
 
-namespace GestaoDispositivos.App.Validations.Users;
+namespace GestaoDispositivos.App.Validations.Clientes;
 public class PasswordValidator<T> : PropertyValidator<T, string>
 {
     private const string ERROR_MESSAGE = "ErrorMessage";

@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using GestaoDispositivos.App.Validations.Clientes.Delete;
-using GestaoDispositivos.Domain.Entities;
-using GestaoDispositivos.Domain.Repos;
-using GestaoDispositivos.Domain.Repos.Clientes;
+﻿using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Services;
 using GestaoDispositivos.Exception;

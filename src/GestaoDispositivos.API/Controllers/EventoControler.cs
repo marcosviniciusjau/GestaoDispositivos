@@ -1,10 +1,7 @@
-﻿using GestaoDispositivos.App.Validations.Clientes.Delete;
-using GestaoDispositivos.App.Validations.Dispositivos.Delete;
-using GestaoDispositivos.App.Validations.Dispositivos.Update;
+﻿using GestaoDispositivos.App.Validations.Eventos.Delete;
 using GestaoDispositivos.App.Validations.Eventos.GetAll;
 using GestaoDispositivos.App.Validations.Eventos.Register;
 using GestaoDispositivos.App.Validations.Eventos.Update;
-using GestaoDispositivos.App.Validations.Users.Update;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -39,10 +36,8 @@ public class EventoController : ControllerBase
     {
         var response = await validation.Execute();
 
-        if (response.Eventos.Count != 0)
             return Ok(response);
 
-        return NoContent();
     }
 
     [HttpDelete]

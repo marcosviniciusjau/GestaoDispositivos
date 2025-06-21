@@ -2,7 +2,7 @@
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Exception;
 
-namespace GestaoDispositivos.App.Validations.Cliente.Register;
+namespace GestaoDispositivos.App.Validations.Clientes.Register;
 public class ClienteValidator : AbstractValidator<RequestCliente>
 {
     public ClienteValidator()

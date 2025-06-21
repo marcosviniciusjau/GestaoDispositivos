@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using GestaoDispositivos.App.Validations.Users;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Exception;
 

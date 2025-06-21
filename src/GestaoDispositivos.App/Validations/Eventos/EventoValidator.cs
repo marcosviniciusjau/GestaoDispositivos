@@ -2,7 +2,7 @@
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Exception;
 
-namespace GestaoEventos.App.Validations.Eventos;
+namespace GestaoDispositivos.App.Validations.Eventos;
 public class EventoValidator : AbstractValidator<RequestEvento>
 {
     public EventoValidator()

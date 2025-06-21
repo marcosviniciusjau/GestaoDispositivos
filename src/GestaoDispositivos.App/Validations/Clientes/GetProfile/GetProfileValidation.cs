@@ -2,7 +2,7 @@
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Services;
 
-namespace GestaoDispositivos.App.Validations.Users.GetProfile;
+namespace GestaoDispositivos.App.Validations.Clientes.GetProfile;
 public class GetProfileValidation : IGetProfileValidation
 {
     private readonly IClienteLogado _loggedUser;

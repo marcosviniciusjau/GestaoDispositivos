@@ -1,4 +1,5 @@
 ﻿using GestaoDispositivos.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace GestaoDispositivos.Domain.Repos.Admin;
 public interface IAdminRead

@@ -1,14 +1,15 @@
 ﻿using GestaoDispositivos.App.Validations.Admin.Delete;
-using GestaoDispositivos.App.Validations.Cliente.Register;
+using GestaoDispositivos.App.Validations.Clientes.ChangePassword;
 using GestaoDispositivos.App.Validations.Clientes.Delete;
+using GestaoDispositivos.App.Validations.Clientes.GetProfile;
+using GestaoDispositivos.App.Validations.Clientes.Register;
+using GestaoDispositivos.App.Validations.Clientes.Update;
 using GestaoDispositivos.App.Validations.Dispositivos.Update;
-using GestaoDispositivos.App.Validations.Users.ChangePassword;
-using GestaoDispositivos.App.Validations.Users.GetProfile;
-using GestaoDispositivos.App.Validations.Users.Update;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IDeleteProfileValidation = GestaoDispositivos.App.Validations.Clientes.Delete.IDeleteProfileValidation;
 
 namespace GestaoDispositivos.API.Controllers
 {

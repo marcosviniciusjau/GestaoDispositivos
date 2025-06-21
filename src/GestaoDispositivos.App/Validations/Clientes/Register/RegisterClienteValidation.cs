@@ -8,7 +8,7 @@ using GestaoDispositivos.Domain.Security;
 using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
 
-namespace GestaoDispositivos.App.Validations.Cliente.Register;
+namespace GestaoDispositivos.App.Validations.Clientes.Register;
 public class RegisterClienteValidation(
     IMapper mapper,
     IPasswordEncripter passwordEncripter,

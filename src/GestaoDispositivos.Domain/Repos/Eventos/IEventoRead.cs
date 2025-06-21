@@ -1,5 +1,4 @@
-﻿using GestaoDispositivos.Communication.Responses;
-using GestaoDispositivos.Domain.Entities;
+﻿using GestaoDispositivos.Domain.Entities;
 
 namespace GestaoDispositivos.Domain.Repos.Eventos;
 public interface IEventoRead

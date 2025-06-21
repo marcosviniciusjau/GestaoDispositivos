@@ -6,7 +6,7 @@ using GestaoDispositivos.Domain.Repos.Eventos;
 using GestaoDispositivos.Domain.Services;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace GestaoDispositivos.App.Validations.Admin.GetAll;
+namespace GestaoDispositivos.App.Validations.Admin.GetAllClientes;
 
 public class GetAllClientesValidation : IGetAllClientesValidation
 {

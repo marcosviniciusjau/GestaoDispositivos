@@ -2,7 +2,7 @@
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Exception;
 
-namespace GestaoDispositivos.App.Validations.Users.Update;
+namespace GestaoDispositivos.App.Validations.Clientes.Update;
 
 internal class UpdateUserValidator : AbstractValidator<RequestUpdateCliente>
 {

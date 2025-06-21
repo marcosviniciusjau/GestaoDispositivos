@@ -162,4 +162,10 @@
   <data name="Dispositivo_Id_Not_Empty" xml:space="preserve">
     <value>O ID do dispositivo é obrigatório</value>
   </data>
+  <data name="Evento_Not_Found" xml:space="preserve">
+    <value>Evento não encontrado</value>
+  </data>
+  <data name="Not_Admin" xml:space="preserve">
+    <value>Você não está autorizado como administrador</value>
+  </data>
 </root>

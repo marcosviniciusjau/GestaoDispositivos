@@ -1,6 +1,5 @@
-﻿using GestaoDispositivos.App.Validations.Admin.GetAll;
+﻿using GestaoDispositivos.App.Validations.Admin.GetAllClientes;
 using GestaoDispositivos.App.Validations.Admin.Register;
-using GestaoDispositivos.App.Validations.Clientes.Delete;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -17,9 +16,9 @@ namespace GestaoDispositivos.API.Controllers
         [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(
             [FromServices] IRegisterAdminValidation validation,
-            [FromBody] RequestAdmin request)
+            [FromBody] RequestAdmin request, IConfiguration configuration)
         {
-            var response = await validation.Execute(request);
+            var response = await validation.Execute(request, configuration);
 
             return Created(string.Empty, response);
         }

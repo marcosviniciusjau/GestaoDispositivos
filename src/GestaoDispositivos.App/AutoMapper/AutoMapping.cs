@@ -28,7 +28,6 @@ public class AutoMapping: Profile
     private void EntityToResponse()
     {
         CreateMap<Evento, ResponseEvento>();
-        CreateMap<Evento, EventosByTipo>();
 
         CreateMap<Dispositivo, ResponseDispositivo>();
 

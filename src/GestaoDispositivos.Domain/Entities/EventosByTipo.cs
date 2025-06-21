@@ -1,10 +1,11 @@
-﻿using GestaoDispositivos.Domain.Entities;
-using GestaoDispositivos.Domain.Entities.Enums;
-namespace GestaoDispositivos.Communication.Responses;
+﻿using GestaoDispositivos.Domain.Entities.Enums;
+namespace GestaoDispositivos.Domain.Entities;
 
 public class EventosByTipo
 {
     public Tipos Tipo { get; set; } = default!;
-    public List<Evento> Eventos { get; set; } = new();
+    public int Quantidade { get; set; }
+    public List<Evento> Eventos { get; set; } = [];
+
 }
 

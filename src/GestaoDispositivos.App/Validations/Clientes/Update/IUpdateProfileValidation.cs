@@ -1,6 +1,6 @@
 ﻿using GestaoDispositivos.Communication.Requests;
 
-namespace GestaoDispositivos.App.Validations.Users.Update;
+namespace GestaoDispositivos.App.Validations.Clientes.Update;
 public interface IUpdateProfileValidation
 {
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using GestaoDispositivos.Communication.Requests;
 
-namespace GestaoDispositivos.App.Validations.Users.ChangePassword;
+namespace GestaoDispositivos.App.Validations.Clientes.ChangePassword;
 public class ChangePasswordValidator : AbstractValidator<RequestChangePassword>
 {
     public ChangePasswordValidator()

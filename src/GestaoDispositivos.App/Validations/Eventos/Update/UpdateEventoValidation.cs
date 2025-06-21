@@ -1,14 +1,9 @@
-﻿using AutoMapper;
-using GestaoDispositivos.Communication.Requests;
-using GestaoDispositivos.Domain.Entities;
+﻿using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Repos.Eventos;
-using GestaoDispositivos.Domain.Services;
 using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
-using GestaoEventos.App.Validations.Eventos;
-
 namespace GestaoDispositivos.App.Validations.Eventos.Update;
 public class UpdateEventoValidation(
     IDispositivoRead dispositivoReadOnly,
@@ -24,7 +19,7 @@ public class UpdateEventoValidation(
      private readonly IEventoUpdate _repos = repos;
     public async Task Execute(Guid id, RequestEvento request)
     {
-        await Validate(request);
+        Validate(request);
 
         var evento = await _eventoReadOnly.GetById(id);
         if (evento is null)
@@ -34,11 +29,6 @@ public class UpdateEventoValidation(
         }
         evento.Tipo = request.Tipo;
         var dispositivoId = await _dispositivoReadOnly.VerifyIfExists(request.DispositivoId);
-        if (dispositivoId is null)
-        {
-            throw new NotFoundException(ResourceErrorMessages.Dispositivo_Not_Found);
-
-        }
 
         evento.DispositivoId = request.DispositivoId;
         _repos.Update(evento);
@@ -47,7 +37,7 @@ public class UpdateEventoValidation(
     }
 
 
-    private async Task Validate(RequestEvento request)
+    private void Validate(RequestEvento request)
     {
         var validator = new EventoValidator();
 

@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using GestaoDispositivos.App.Validations.Admin.Delete;
-using GestaoDispositivos.Domain.Repos;
+﻿using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Clientes;
 using GestaoDispositivos.Domain.Services;
 
@@ -30,4 +28,5 @@ public class DeleteProfileValidation : IDeleteProfileValidation
 
         await _unitOfWork.Commit();
     }
+
 }

@@ -8,8 +8,7 @@ using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Clientes;
 using GestaoDispositivos.Exception.ExceptionBase;
 using GestaoDispositivos.Exception;
-
-namespace GestaoDispositivos.App.Validations.Users.ChangePassword;
+namespace GestaoDispositivos.App.Validations.Clientes.ChangePassword;
 public class ChangePasswordValidation(IClienteLogado loggedUser,
     IPasswordEncripter passwordEncripter,
     IClienteUpdate repos,
@@ -33,7 +32,7 @@ public class ChangePasswordValidation(IClienteLogado loggedUser,
         await _unitOfWork.Commit();
     }
 
-    private void Validate(RequestChangePassword request, Domain.Entities.Cliente loggedUser)
+    private void Validate(RequestChangePassword request, Cliente loggedUser)
     {
         var validator = new ChangePasswordValidator();
 

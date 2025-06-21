@@ -21,7 +21,7 @@ public class UpdateDispositivoValidation(
     public async Task Execute(Guid id, RequestDispositivo request)
     {
         var loggedUser = await _loggedUser.Get();
-        await Validate(request);
+        Validate(request);
 
         var dispositivo = await _dispositivoReadOnly.GetById(loggedUser,id);
         if (dispositivo is null)
@@ -38,7 +38,7 @@ public class UpdateDispositivoValidation(
     }
 
 
-    private async Task Validate(RequestDispositivo request)
+    private void Validate(RequestDispositivo request)
     {
         var validator = new DispositivoValidator();
 

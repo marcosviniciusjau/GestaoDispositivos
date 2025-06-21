@@ -7,6 +7,7 @@ using GestaoDispositivos.Domain.Repos.Admin;
 using GestaoDispositivos.Domain.Security;
 using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
+using Microsoft.Extensions.Configuration;
 
 namespace GestaoDispositivos.App.Validations.Admin.Register;
 public class RegisterAdminValidation(
@@ -25,9 +26,9 @@ public class RegisterAdminValidation(
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
 
-    public async Task<ResponseAdmin> Execute(RequestAdmin request)
+    public async Task<ResponseAdmin> Execute(RequestAdmin request, IConfiguration configuration)
     {
-        await Validate(request);
+        await Validate(request, configuration);
 
         var admin = _mapper.Map<Domain.Entities.Admin>(request);
         admin.Senha = _passwordEncripter.Encrypt(request.Senha);
@@ -43,21 +44,27 @@ public class RegisterAdminValidation(
         };
     }
 
-    private async Task Validate(RequestAdmin request)
+    private async Task Validate(RequestAdmin request, IConfiguration configuration)
     {
         var validator = new AdminValidator();
-         var result = validator.Validate(request);
+        var result = validator.Validate(request);
+        var adminEmail = configuration.GetValue<string>("Settings:AdminEmail");
 
-        var exists = await _adminReadOnly.Exists(request.Email);
-        if (exists) {
-            result.Errors.Add(new ValidationFailure(string.Empty,ResourceErrorMessages.Email_Exists));
-        }
+     
+            var exists = await _adminReadOnly.Exists(request.Email);
+            if (exists)
+            {
+                result.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.Email_Exists));
+            }
 
-        if (result.IsValid == false)
-        {
-            var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
+            if (result.IsValid == false)
+            {
+                var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
 
-            throw new ErrorOnValidation(errorMessages);
-        }
+                throw new ErrorOnValidation(errorMessages);
+            }
+        
+      
+
     }
 }

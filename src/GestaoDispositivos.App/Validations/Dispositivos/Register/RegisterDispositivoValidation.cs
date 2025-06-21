@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GestaoDispositivos.App.Validations.Dispositivo.Register;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Repos;
@@ -29,7 +28,7 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
 
     public async Task<ResponseDispositivo> Execute(RequestDispositivo request)
     {
-        await Validate(request);
+        Validate(request);
         var loggedUser = await _loggedUser.Get();
 
         var dispositivo = _mapper.Map<Domain.Entities.Dispositivo>(request);
@@ -41,7 +40,7 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
         return _mapper.Map<ResponseDispositivo>(dispositivo);
     }
 
-    private async Task Validate(RequestDispositivo request)
+    private void Validate(RequestDispositivo request)
     {
         var validator = new DispositivoValidator();
 

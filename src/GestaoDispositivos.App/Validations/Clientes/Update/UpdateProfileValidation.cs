@@ -6,8 +6,7 @@ using GestaoDispositivos.Domain.Repos.Clientes;
 using GestaoDispositivos.Exception.ExceptionBase;
 using GestaoDispositivos.Exception;
 using GestaoDispositivos.Domain.Repos;
-
-namespace GestaoDispositivos.App.Validations.Users.Update;
+namespace GestaoDispositivos.App.Validations.Clientes.Update;
 public class UpdateProfileValidation(
     IClienteRead userReadOnly,
     IClienteUpdate repos,

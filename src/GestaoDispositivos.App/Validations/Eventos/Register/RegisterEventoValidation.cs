@@ -1,16 +1,11 @@
 ﻿using AutoMapper;
-using FluentValidation.Results;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using GestaoDispositivos.Domain.Services;
-using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
-using GestaoEventos.App.Validations.Eventos;
-using Microsoft.SqlServer.Management.Smo;
-
 namespace GestaoDispositivos.App.Validations.Eventos.Register;
 public class RegisterEventoValidation : IRegisterEventoValidation
 {

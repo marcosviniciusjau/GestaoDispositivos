@@ -1,6 +1,7 @@
 ﻿using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos.Admin;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace GestaoDispositivos.Infra.DataAccess.Repos;
 
