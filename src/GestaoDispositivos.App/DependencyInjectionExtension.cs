@@ -42,7 +42,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IRegisterClienteValidation, RegisterClienteValidation>();
         services.AddScoped<IGetProfileValidation, GetProfileValidation>();
         services.AddScoped<IUpdateProfileValidation, UpdateProfileValidation>();
-
+        services.AddScoped<IDeleteProfileValidation, DeleteProfileValidation>();
         services.AddScoped<IChangePasswordValidation, ChangePasswordValidation>();
   
         services.AddScoped<IRegisterDispositivoValidation, RegisterDispositivoValidation>();

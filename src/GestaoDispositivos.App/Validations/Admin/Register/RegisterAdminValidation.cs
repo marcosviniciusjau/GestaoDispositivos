@@ -26,9 +26,9 @@ public class RegisterAdminValidation(
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
 
-    public async Task<ResponseAdmin> Execute(RequestAdmin request, IConfiguration configuration)
+    public async Task<ResponseAdmin> Execute(RequestAdmin request)
     {
-        await Validate(request, configuration);
+        await Validate(request);
 
         var admin = _mapper.Map<Domain.Entities.Admin>(request);
         admin.Senha = _passwordEncripter.Encrypt(request.Senha);
@@ -44,12 +44,11 @@ public class RegisterAdminValidation(
         };
     }
 
-    private async Task Validate(RequestAdmin request, IConfiguration configuration)
+    private async Task Validate(RequestAdmin request)
     {
         var validator = new AdminValidator();
         var result = validator.Validate(request);
-        var adminEmail = configuration.GetValue<string>("Settings:AdminEmail");
-
+      
      
             var exists = await _adminReadOnly.Exists(request.Email);
             if (exists)

@@ -1,15 +1,16 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.OpenApi.Models;
-using GestaoDispositivos.API.Middleware;
 using GestaoDispositivos.API.Filters;
+using GestaoDispositivos.API.Middleware;
 using GestaoDispositivos.API.Token;
+using GestaoDispositivos.App;
+using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Security;
 using GestaoDispositivos.Infra;
-
-using GestaoDispositivos.App;
 using GestaoDispositivos.Infra.Migrations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -22,7 +23,13 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
-
+builder.Services.Configure<SettingsOption>(
+    builder.Configuration.GetSection("Settings"));
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

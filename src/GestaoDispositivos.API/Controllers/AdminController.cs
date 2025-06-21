@@ -16,9 +16,9 @@ namespace GestaoDispositivos.API.Controllers
         [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(
             [FromServices] IRegisterAdminValidation validation,
-            [FromBody] RequestAdmin request, IConfiguration configuration)
+            [FromBody] RequestAdmin request)
         {
-            var response = await validation.Execute(request, configuration);
+            var response = await validation.Execute(request);
 
             return Created(string.Empty, response);
         }

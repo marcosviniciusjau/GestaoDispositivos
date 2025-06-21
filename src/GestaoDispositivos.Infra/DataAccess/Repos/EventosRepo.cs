@@ -1,14 +1,16 @@
 ﻿using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos.Eventos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 namespace GestaoDispositivos.Infra.DataAccess.Repos;
 
 internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead, IEventoCreate, IEventoUpdate, IEventoDelete
 {
     private readonly GestaoDispositivosDbContext _dbContext = dbContext;
-
+  
     public async Task Add(Evento evento)
     {
+    
         await _dbContext.Eventos.AddAsync(evento);
     }
 
@@ -16,17 +18,20 @@ internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead,
     {
         return await _dbContext.Eventos.AsNoTracking().ToListAsync();
     }
+
     public async Task Delete(Guid id)
     {
         var result = await _dbContext.Eventos.FindAsync(id);
         _dbContext.Eventos.Remove(result!);
     }
+
     public async Task<Evento?> GetByDispositivoId(Guid dispositivoId)
     {
         return await _dbContext.Eventos
             .AsNoTracking()
             .FirstOrDefaultAsync(d => d.DispositivoId == dispositivoId);
     }
+
     public async Task<List<EventosByTipo>> GetEventsByWeek()
     {
         var today =  DateTime.UtcNow;
