@@ -7,7 +7,6 @@ public interface IEventoRead
     Task<Evento?> GetByDispositivoId(Guid dispositivoId);
 
     Task<Evento?> GetById(Guid id);
-    Task<List<Evento>> GetByDate(DateTime date);
 
     Task<List<EventosByTipo>> GetEventsByWeek();
 }

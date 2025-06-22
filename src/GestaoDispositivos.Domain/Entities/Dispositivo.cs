@@ -9,5 +9,5 @@ public class Dispositivo
     public Guid ClienteId { get; set; } = default!; 
     public Cliente Cliente { get; set; } = default!;
 
-    public DateTime DataAtivacao;
+    public DateTime DataAtivacao = default!;
 }

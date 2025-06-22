@@ -34,6 +34,7 @@ public class AutoMapping: Profile
         CreateMap<Cliente, ResponseUser>();
         CreateMap<Admin, ResponseUser>();
         CreateMap<Admin, ResponseClientes>();
+        CreateMap<Admin, ResponseCliente>();
         CreateMap<Cliente, ResponseClienteProfile>();
     }
 }

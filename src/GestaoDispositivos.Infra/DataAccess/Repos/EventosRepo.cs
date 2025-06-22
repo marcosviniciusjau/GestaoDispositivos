@@ -13,6 +13,7 @@ internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead,
         await _dbContext.Eventos.AddAsync(evento);
     }
 
+ 
     public async Task<List<Evento>> GetAll()
     {
         return await _dbContext.Eventos.AsNoTracking().ToListAsync();
@@ -24,11 +25,11 @@ internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead,
         _dbContext.Eventos.Remove(result!);
     }
 
-    public async Task<Evento?> GetByDispositivoId(Guid dispositivoId)
+    async Task<Evento?> IEventoRead.GetByDispositivoId(Guid dispositivoId)
     {
         return await _dbContext.Eventos
             .AsNoTracking()
-            .FirstOrDefaultAsync(d => d.DispositivoId == dispositivoId);
+            .FirstOrDefaultAsync(e => e.DispositivoId == dispositivoId);
     }
 
     public async Task<List<EventosByTipo>> GetEventsByWeek()
@@ -53,28 +54,11 @@ internal class EventosRepo(GestaoDispositivosDbContext dbContext) : IEventoRead,
         return eventosByCategory;
     }
  
-    public void Update(Evento expense)
+    public void Update(Evento evento)
     {
-        _dbContext.Eventos.Update(expense);
+        _dbContext.Eventos.Update(evento);
     }
 
-    async Task<List<Evento>> IEventoRead.GetByDate(DateTime date)
-    {
-        var startDate = new DateTime(year: date.Year, month: date.Month, day:date.Day).Date;
-       var endDate = new DateTime(year: date.Year, month: date.Month, day: date.Day, hour: 23, minute: 59, second: 59);
-
-        return await _dbContext.Eventos
-             .AsNoTracking()
-              .Where(e => e.DataHora >= startDate &&
-             e.DataHora <= endDate)
-             .ToListAsync();
-    }
-
-    public async Task<List<Evento>> FilterByWeek()
-    {
-         return await _dbContext.Eventos.AsNoTracking().ToListAsync();
-
-    }
     async Task<Evento?> IEventoRead.GetById(Guid id)
     {
         return await _dbContext.Eventos

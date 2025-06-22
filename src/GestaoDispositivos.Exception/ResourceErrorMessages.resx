@@ -168,4 +168,13 @@
   <data name="Not_Admin" xml:space="preserve">
     <value>Você não está autorizado como administrador</value>
   </data>
+  <data name="Cliente_Not_Found" xml:space="preserve">
+    <value>Cliente não encontrado</value>
+  </data>
+  <data name="Dispositivo_In_Use" xml:space="preserve">
+    <value>Dispositivo já está com um evento cadastrado</value>
+  </data>
+  <data name="Dispositivo_Exists" xml:space="preserve">
+    <value>O Dispositivo já existe. Digite outro serial</value>
+  </data>
 </root>

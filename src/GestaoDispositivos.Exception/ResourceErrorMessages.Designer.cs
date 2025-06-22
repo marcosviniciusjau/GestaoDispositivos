@@ -61,6 +61,15 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cliente não encontrado.
+        /// </summary>
+        public static string Cliente_Not_Found {
+            get {
+                return ResourceManager.GetString("Cliente_Not_Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Data é obrigatória.
         /// </summary>
         public static string Date_Not_Empty {
@@ -79,11 +88,29 @@ namespace GestaoDispositivos.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O Dispositivo já existe. Digite outro serial.
+        /// </summary>
+        public static string Dispositivo_Exists {
+            get {
+                return ResourceManager.GetString("Dispositivo_Exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O ID do dispositivo é obrigatório.
         /// </summary>
         public static string Dispositivo_Id_Not_Empty {
             get {
                 return ResourceManager.GetString("Dispositivo_Id_Not_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dispositivo já está com um evento cadastrado.
+        /// </summary>
+        public static string Dispositivo_In_Use {
+            get {
+                return ResourceManager.GetString("Dispositivo_In_Use", resourceCulture);
             }
         }
         

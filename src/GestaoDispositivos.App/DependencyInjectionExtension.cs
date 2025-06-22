@@ -14,12 +14,13 @@ using GestaoDispositivos.App.Validations.Login;
 using Microsoft.Extensions.DependencyInjection;
 using GestaoDispositivos.App.Validations.Admin.GetAllClientes;
 using GestaoDispositivos.App.Validations.Clientes.ChangePassword;
-using GestaoDispositivos.App.Validations.Clientes.Update;
 using GestaoDispositivos.App.Validations.Clientes.GetProfile;
 using GestaoDispositivos.App.Validations.Clientes.Register;
 using GestaoDispositivos.App.Validations.LoginAdmin;
 using GestaoDispositivos.App.Validations.Eventos.GetById;
-using GestaoDispositivos.App.Validations.Eventos.GetByDate;
+using GestaoDispositivos.App.Validations.Eventos.GetEventoByDispositivoId;
+using GestaoDispositivos.App.Validations.Admin.UpdateCliente;
+using GestaoDispositivos.App.Validations.Clientes.Update;
 namespace GestaoDispositivos.App;
 
 public static class DependencyInjectionExtension
@@ -40,7 +41,8 @@ public static class DependencyInjectionExtension
     {
          services.AddScoped<IRegisterAdminValidation, RegisterAdminValidation>();
          services.AddScoped<IGetAllClientesValidation, GetAllClientesValidation>();
-       
+        services.AddScoped<IUpdateClienteValidation, UpdateClienteValidation>();
+
         services.AddScoped<IRegisterClienteValidation, RegisterClienteValidation>();
         services.AddScoped<IGetProfileValidation, GetProfileValidation>();
         services.AddScoped<IUpdateProfileValidation, UpdateProfileValidation>();
@@ -54,10 +56,9 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IRegisterEventoValidation, RegisterEventoValidation>();
         services.AddScoped<IGetAllEventosValidation, GetAllEventosValidation>();
-        services.AddScoped<IGetEventoByIdValidation, GetEventoByIdValidation>();
-
-
-        services.AddScoped<IGetEventosByDateValidation, GetEventosByDateValidation>();
+        services.AddScoped<IGetByIdValidation, GetByIdValidation>();
+        services.AddScoped<IGetEventoByDispositivoIdValidation, GetEventoByDispositivoIdValidation>();
+       
         services.AddScoped<IUpdateEventoValidation, UpdateEventoValidation>();
         services.AddScoped<IDeleteEventoValidation, DeleteEventoValidation>();
 

@@ -19,7 +19,7 @@ namespace GestaoDispositivos.Infra.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -34,7 +34,8 @@ namespace GestaoDispositivos.Infra.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Serial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IMEI = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DataAtivacao = table.Column<DateTime>(type: "datetime2", nullable: true),
                 },
                 constraints: table =>
                 {

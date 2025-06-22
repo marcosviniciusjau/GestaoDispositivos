@@ -32,7 +32,7 @@ public class RegisterClienteValidation(
         var cliente = _mapper.Map<Domain.Entities.Cliente>(request);
         cliente.Senha = _passwordEncripter.Encrypt(request.Senha);
         cliente.Id = Guid.NewGuid();
-
+        cliente.Status = true;
         await _clienteWrite.Add(cliente);
 
         await _unitOfWork.Commit();

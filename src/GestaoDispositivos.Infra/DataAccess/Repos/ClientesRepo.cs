@@ -21,12 +21,7 @@ internal class ClientesRepo(GestaoDispositivosDbContext dbContext) : IClienteRea
 
     public async Task<bool> Exists(string email)
     {
-        return await _dbContext.Clientes.AnyAsync(u => u.Email.Equals(email));
-    }
-
-    public async Task<bool> ExistCliente(string email)
-    {
-        return await _dbContext.Clientes.AnyAsync(u => u.Email.Equals(email));
+        return await _dbContext.Clientes.AnyAsync(c=> c.Email.Equals(email));
     }
 
     public async Task<Cliente?> GetByEmail(string email)

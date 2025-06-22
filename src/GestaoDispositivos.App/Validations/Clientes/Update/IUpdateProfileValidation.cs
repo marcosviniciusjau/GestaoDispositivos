@@ -4,5 +4,5 @@ namespace GestaoDispositivos.App.Validations.Clientes.Update;
 public interface IUpdateProfileValidation
 {
 
-    public Task Execute(RequestUpdateCliente request);
+    public Task Execute(RequestUpdateProfile request);
 }

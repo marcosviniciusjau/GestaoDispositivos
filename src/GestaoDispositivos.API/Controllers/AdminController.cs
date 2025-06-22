@@ -1,5 +1,8 @@
 ﻿using GestaoDispositivos.App.Validations.Admin.GetAllClientes;
 using GestaoDispositivos.App.Validations.Admin.Register;
+using GestaoDispositivos.App.Validations.Admin.UpdateCliente;
+using GestaoDispositivos.App.Validations.Eventos.GetById;
+using GestaoDispositivos.App.Validations.Eventos.Update;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +35,19 @@ namespace GestaoDispositivos.API.Controllers
 
             return Ok(response);
         }
+        [HttpPut]
+        [Route("{clienteId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update(
+      [FromServices] IUpdateClienteValidation validation,
+      [FromRoute] Guid clienteId,
+      [FromBody] RequestUpdateCliente request)
+        {
+            await validation.Execute(clienteId, request);
+            return NoContent();
 
+        }
     }
-}
+ }

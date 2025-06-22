@@ -4,13 +4,13 @@ using GestaoDispositivos.Exception;
 
 namespace GestaoDispositivos.App.Validations.Clientes.Update;
 
-internal class UpdateUserValidator : AbstractValidator<RequestUpdateCliente>
+internal class UpdateProfileValidator : AbstractValidator<RequestUpdateProfile>
 {
-    public UpdateUserValidator()
+    public UpdateProfileValidator()
     {
-        RuleFor(expense => expense.Nome).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
-        RuleFor(expense => expense.Telefone).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
-        RuleFor(expense => expense.Email)
+        RuleFor(profile => profile.Nome).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
+        RuleFor(profile => profile.Telefone).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
+        RuleFor(profile => profile.Email)
             .NotEmpty()
             .WithMessage(ResourceErrorMessages.Email_Not_Empty)
             .EmailAddress()

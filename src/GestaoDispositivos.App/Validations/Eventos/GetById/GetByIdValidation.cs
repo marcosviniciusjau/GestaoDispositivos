@@ -6,12 +6,12 @@ using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
 
 namespace GestaoDispositivos.App.Validations.Eventos.GetById;
-public class GetEventoByIdValidation : IGetEventoByIdValidation
+public class GetByIdValidation : IGetByIdValidation
 {
     private readonly IEventoRead _repos;
     private readonly IMapper _mapper;
 
-    public GetEventoByIdValidation(
+    public GetByIdValidation(
         IEventoRead repos,
         IMapper mapper
         )

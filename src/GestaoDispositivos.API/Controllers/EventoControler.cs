@@ -1,7 +1,7 @@
 ﻿using GestaoDispositivos.App.Validations.Eventos.Delete;
 using GestaoDispositivos.App.Validations.Eventos.GetAll;
-using GestaoDispositivos.App.Validations.Eventos.GetByDate;
 using GestaoDispositivos.App.Validations.Eventos.GetById;
+using GestaoDispositivos.App.Validations.Eventos.GetEventoByDispositivoId;
 using GestaoDispositivos.App.Validations.Eventos.Register;
 using GestaoDispositivos.App.Validations.Eventos.Update;
 using GestaoDispositivos.Communication.Requests;
@@ -31,7 +31,7 @@ public class EventoController : ControllerBase
       
     }
 
-    [HttpGet]
+    [HttpGet("get_all_eventos_by_week")]
     [ProducesResponseType(typeof(ResponseEventos), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllEventos([FromServices] IGetAllEventosValidation validation)
@@ -42,12 +42,13 @@ public class EventoController : ControllerBase
 
     }
 
-    [HttpGet("eventos_by_date")]
+    [HttpGet("evento_by_dispositivo_id")]
     [ProducesResponseType(typeof(ResponseEventos), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetEventosByDate([FromServices] IGetEventosByDateValidation validation, [FromHeader] DateTime date)
+
+    public async Task<IActionResult> GetEventoByDispositivoId([FromServices] IGetEventoByDispositivoIdValidation validation, [FromQuery] Guid dispositivoId)
     {
-        var response = await validation.Execute(date);
+        var response = await validation.Execute(dispositivoId);
         return Ok(response);
     }
 
@@ -56,7 +57,7 @@ public class EventoController : ControllerBase
     [ProducesResponseType(typeof(ResponseEvento), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
-   [FromServices] IGetEventoByIdValidation validation,
+   [FromServices] IGetByIdValidation validation,
    [FromRoute] Guid id)
     {
         var response = await validation.Execute(id);

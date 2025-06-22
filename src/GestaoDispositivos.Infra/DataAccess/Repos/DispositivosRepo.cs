@@ -17,6 +17,11 @@ internal class DispositivosRepo : IDispositivoRead, IDispositivoCreate, IDisposi
         await _dbContext.Dispositivos.AddAsync(dispositivo);
     }
 
+    public async Task<bool> Exists(string serial)
+    {
+        return await _dbContext.Dispositivos.AnyAsync(d => d.Serial.Equals(serial));
+    }
+
     public async Task<List<Dispositivo>> GetAll(Cliente cliente)
     {
         return await _dbContext.Dispositivos.AsNoTracking().Where(dispositivo => dispositivo.ClienteId == cliente.Id).ToListAsync();
@@ -40,6 +45,7 @@ internal class DispositivosRepo : IDispositivoRead, IDispositivoCreate, IDisposi
             .AsNoTracking()
             .FirstOrDefaultAsync(d => d.Id == id && d.ClienteId == cliente.Id);
     }
+
     async Task<Dispositivo?> IDispositivoRead.VerifyIfExists(Guid id)
     {
         return await _dbContext.Dispositivos

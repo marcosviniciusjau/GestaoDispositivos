@@ -1,4 +1,5 @@
 ﻿using GestaoDispositivos.App.Validations.Admin.Delete;
+using GestaoDispositivos.App.Validations.Admin.UpdateCliente;
 using GestaoDispositivos.App.Validations.Clientes.ChangePassword;
 using GestaoDispositivos.App.Validations.Clientes.Delete;
 using GestaoDispositivos.App.Validations.Clientes.GetProfile;
@@ -45,7 +46,7 @@ namespace GestaoDispositivos.API.Controllers
         [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateProfile(
             [FromServices] IUpdateProfileValidation validation,
-            [FromBody] RequestUpdateCliente request)
+            [FromBody] RequestUpdateProfile request)
         {
             await validation.Execute(request);
 
