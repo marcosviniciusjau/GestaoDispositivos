@@ -18,9 +18,11 @@ public class UpdateDispositivoValidation(
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IClienteLogado _loggedUser = loggedUser;
     private readonly IDispositivoUpdate _repos = repos;
+
     public async Task Execute(Guid id, RequestDispositivo request)
     {
         var loggedUser = await _loggedUser.Get();
+
         Validate(request);
 
         var dispositivo = await _dispositivoReadOnly.GetById(loggedUser,id);

@@ -6,4 +6,7 @@ public class ResponseCliente
     public string Email { get; set; } = string.Empty;
     public string Telefone { get; set; } = string.Empty;
     public bool Status { get; set; }
+
+    public string StatusDescricao => Status ? "Ativo" : "Inativo";
+
 }

@@ -2,11 +2,13 @@
 using FluentValidation.Results;
 using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Communication.Responses;
+using GestaoDispositivos.Domain.Entities;
 using GestaoDispositivos.Domain.Repos;
 using GestaoDispositivos.Domain.Repos.Dispositivos;
 using GestaoDispositivos.Domain.Services;
 using GestaoDispositivos.Exception;
 using GestaoDispositivos.Exception.ExceptionBase;
+using GestaoDispositivos.Infra.Migrations;
 
 namespace GestaoDispositivos.App.Validations.Dispositivos.Register;
 public class RegisterDispositivoValidation : IRegisterDispositivoValidation
@@ -16,12 +18,14 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
     private readonly IUnitOfWork _unityOfWork;
     private readonly IMapper _mapper;
     private readonly IClienteLogado _loggedUser;
+    private readonly IAdminLogado _loggedUserAdmin;
     public RegisterDispositivoValidation(
         IDispositivoCreate repo,
         IDispositivoRead dispositivoReadOnly,
         IUnitOfWork unityOfWork,
         IMapper mapper,
-        IClienteLogado loggedUser
+        IClienteLogado loggedUser,
+        IAdminLogado loggedUserAdmin
         )
     {
         _repo = repo;
@@ -29,14 +33,14 @@ public class RegisterDispositivoValidation : IRegisterDispositivoValidation
         _unityOfWork = unityOfWork;
         _mapper = mapper;
         _loggedUser = loggedUser;
+        _loggedUserAdmin = loggedUserAdmin;
     }
 
     public async Task<ResponseDispositivo> Execute(RequestDispositivo request)
     {
         await Validate(request);
-        var loggedUser = await _loggedUser.Get();
-
-        var dispositivo = _mapper.Map<Domain.Entities.Dispositivo>(request);
+        var loggedUser= await _loggedUser.Get();
+        var dispositivo = _mapper.Map<Dispositivo>(request);
         dispositivo.ClienteId = loggedUser.Id;
         dispositivo.DataAtivacao = DateTime.Now;
         await _repo.Add(dispositivo);

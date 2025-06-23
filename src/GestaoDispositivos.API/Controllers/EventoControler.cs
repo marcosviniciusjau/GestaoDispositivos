@@ -86,7 +86,7 @@ public class EventoController : ControllerBase
     public async Task<IActionResult> Update(
         [FromServices] IUpdateEventoValidation validation,
         [FromRoute] Guid id,
-        [FromBody] RequestEvento request)
+        [FromBody] RequestUpdateEvento request)
     {
         await validation.Execute(id, request);
         return NoContent();

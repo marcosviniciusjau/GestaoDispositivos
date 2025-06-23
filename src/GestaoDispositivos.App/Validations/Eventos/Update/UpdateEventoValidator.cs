@@ -3,13 +3,16 @@ using GestaoDispositivos.Communication.Requests;
 using GestaoDispositivos.Exception;
 
 namespace GestaoDispositivos.App.Validations.Eventos;
-public class EventoValidator : AbstractValidator<RequestEvento>
+public class UpdateEventoValidator : AbstractValidator<RequestEvento>
 {
-    public EventoValidator()
+    public UpdateEventoValidator()
     {  
         RuleFor(evento => evento.Tipo).IsInEnum().WithMessage(ResourceErrorMessages.Type_Invalid);
 
-        RuleFor(evento => evento.DispositivoId).NotEmpty().WithMessage(ResourceErrorMessages.Dispositivo_Id_Not_Empty);
-    }
+     }
 
+    internal object Validate(RequestUpdateEvento request)
+    {
+        throw new NotImplementedException();
+    }
 }

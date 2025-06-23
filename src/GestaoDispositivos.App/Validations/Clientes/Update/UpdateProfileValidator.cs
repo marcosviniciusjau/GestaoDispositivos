@@ -9,7 +9,6 @@ internal class UpdateProfileValidator : AbstractValidator<RequestUpdateProfile>
     public UpdateProfileValidator()
     {
         RuleFor(profile => profile.Nome).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
-        RuleFor(profile => profile.Telefone).NotEmpty().WithMessage(ResourceErrorMessages.Name_Not_Empty);
         RuleFor(profile => profile.Email)
             .NotEmpty()
             .WithMessage(ResourceErrorMessages.Email_Not_Empty)

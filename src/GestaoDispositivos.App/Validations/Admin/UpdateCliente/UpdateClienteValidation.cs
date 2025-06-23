@@ -16,7 +16,7 @@ public class UpdateClienteValidation(
         var cliente = await _repos.GetById(clienteId);
         if(cliente is null) throw new NotFoundException(ResourceErrorMessages.Cliente_Not_Found);
         cliente.Status = request.Status;
-
+   
         _repos.Update(cliente);
 
         await _unitOfWork.Commit();

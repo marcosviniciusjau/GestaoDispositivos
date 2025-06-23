@@ -3,5 +3,5 @@
 namespace GestaoDispositivos.App.Validations.Eventos.Update;
 public interface IUpdateEventoValidation
 {
-    public Task Execute(Guid id, RequestEvento request);
+    public Task Execute(Guid id, RequestUpdateEvento request);
 }

@@ -35,8 +35,7 @@ namespace GestaoDispositivos.Infra.Migrations
                     Serial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IMEI = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataAtivacao = table.Column<DateTime>(type: "datetime2", nullable: true),
-                },
+                      },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dispositivos", x => x.Id);

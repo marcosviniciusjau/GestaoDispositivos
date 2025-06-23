@@ -42,17 +42,8 @@ public class RegisterEventoValidation : IRegisterEventoValidation
         var loggedUser = await _loggedUser.Get();
 
         evento.DataHora = DateTime.Now;
-        var dispositivoExists = await _repoDispositivoRead.GetById(loggedUser,request.DispositivoId);
-        if(dispositivoExists is null)
-        {
-            throw new NotFoundException(ResourceErrorMessages.Dispositivo_Not_Found);
-        }
-
-        var dispositivoInUse = await _repoRead.GetByDispositivoId(request.DispositivoId);
-        if(dispositivoInUse != null)
-        {
-            throw new DispositivoInUse(ResourceErrorMessages.Dispositivo_In_Use);
-        }
+        evento.DispositivoId = evento.DispositivoId;
+      
         await _repo.Add(evento);
 
         await _unityOfWork.Commit();
