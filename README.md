@@ -1,7 +1,7 @@
 # GestaoDispositivos
 
 Sobre o projeto
-Esta API, desenvolvida utilizando .NET 8, adota os princípios do Domain-Driven Design (DDD) para oferecer uma solução estruturada e eficaz no gerenciamento de  uma API    que gerenciar clientes, dispositivos e eventos
+Esta API, desenvolvida utilizando .NET 8, adota os princípios do Domain-Driven Design (DDD) para oferecer uma solução estruturada e eficaz no gerenciamento  que gerenciar clientes, dispositivos e eventos
 recebidos desses dispositivos.
 A arquitetura da API baseia-se em REST, utilizando métodos HTTP padrão para uma comunicação eficiente e simplificada. Além disso, é complementada por uma documentação Swagger, que proporciona uma interface gráfica interativa para que os desenvolvedores possam explorar e testar os endpoints de maneira fácil.
 
@@ -33,10 +33,12 @@ Preencha as informações no arquivo appsettings.Development.json: {
     "Connection": "Server=Seu servidor;Database=gestao_dispositivos;User Id=sa;Password=Sua Senha&;TrustServerCertificate=True;"
   },
   "Settings": {
+  "AdminEmail": "emailunicodeadm@adm.com"
     "Jwt": {
       "SigningKey": "Chave JWT",
       "ExpiresMinutes": 1000
     }
+    
   }
 }
 
@@ -49,4 +51,4 @@ Rotas:
 CRUD de Cliente
 CRUD de Dispositivos
 CRUD de Eventos por semana
-As rotas são ferenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos
+As rotas são ferenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos. Os clientes serão listados com o endpoint de administrador que pode alterar o status dos clientes de acordo com os respectivos ids. As demais rotas são acessíveis apenas para clientes
