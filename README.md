@@ -50,5 +50,6 @@ Ao Executar a API, as migrations serão executados no banco de dados e as tabela
 Rotas:
 CRUD de Cliente
 CRUD de Dispositivos
-CRUD de Eventos por semana
-As rotas são ferenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos. Os clientes serão listados com o endpoint de administrador que pode alterar o status dos clientes de acordo com os respectivos ids. As demais rotas são acessíveis apenas para clientes
+CRUD de Eventos por semana e id do dispositivo
+As rotas são referenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos.
+Os clientes serão listados com o endpoint de administrador(que aceita apenas o email da variável  AdminEmail do appsettings.Development.json que poderá alterar o status dos clientes de acordo com os respectivos ids. As demais rotas são acessíveis apenas para clientes
