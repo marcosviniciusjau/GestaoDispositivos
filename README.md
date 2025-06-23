@@ -47,9 +47,12 @@ Para novas migrations rode o comando na raiz do projeto onde está o projeto sln
 
 Ao Executar a API, as migrations serão executados no banco de dados e as tabelas serão criadas.
 
+As rotas são referenciadas por autenticação com JWT, com o cliente autenticando com email e senha e o token gerado sendo usado no campo superior direito de autenticação podendo realizar o CRUD de dispositivos e eventos.
+Os clientes serão listados com o endpoint de administrador(que aceita apenas o email da variável  AdminEmail do appsettings.Development.json) que poderá alterar o status dos clientes de acordo com os respectivos ids. As demais rotas são acessíveis apenas para clientes
+
 Rotas:
-CRUD de Cliente
-CRUD de Dispositivos
-CRUD de Eventos por semana e id do dispositivo
-As rotas são referenciadas por autenticação com JWT, do cliente criando os dispositivos e eventos.
-Os clientes serão listados com o endpoint de administrador(que aceita apenas o email da variável  AdminEmail do appsettings.Development.json que poderá alterar o status dos clientes de acordo com os respectivos ids. As demais rotas são acessíveis apenas para clientes
+CRUD de Cliente. O cliente poderá editar seu perfil, com os campos nome, e-mail, telefone e sua senha.
+
+CRUD de Dispositivos. O Id do Cliente será preenchido com a serialização do token, a data é preenchida automaticamente com uma nova data setada.
+
+CRUD de Eventos por semana e id do dispositivo. O Evento só poderá ser criado ou editado se existir o id do dispositivo do contrário ocorrerá um erro.
